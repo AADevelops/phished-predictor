@@ -23,7 +23,7 @@ to_drop = [c for c in upper.columns if any(upper[c] > 0.9)]
 filtered_vars = [v for v in keep_vars if v not in to_drop]
 
 # Saving file after removing features with low variance and hugh correlation
-df = df[filtered_vars]
+df = df[['URL'] + filtered_vars]
 df.to_csv('model/data/csv-versions/2corr&var/corr&var_filtered_data.csv', index=False)
 
 # Scoring features by importance using randmom forest, selecting top 25
@@ -41,6 +41,5 @@ print(top25)
 # Saving file after using random forest to select top 25 features
 
 features = list(top25.index)
-df_selected = df[features]
+df_selected = df[['URL'] + features]
 df_selected.to_csv('model/data/csv-versions/3rf/rf_filtered_data.csv', index=False)
-
