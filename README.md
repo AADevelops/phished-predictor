@@ -1,4 +1,4 @@
-# phished-predictor
+# URL Phishing Prediction Model
 
 
 Citation: 
