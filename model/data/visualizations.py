@@ -7,7 +7,7 @@ from itertools import combinations
 
 # Preview the dataset
 df = pd.read_csv('https://archive.ics.uci.edu/static/public/967/data.csv')
-df = df[df['URLLength'] < 1200]  # Filter out URLs longer than 21200 characters
+df = df[df['URLLength'] < 1200]  # Filter out URLs longer than 1200 characters
 print(df.head())
 
 # Label distrubution of phishing or not phishing
