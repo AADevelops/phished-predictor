@@ -23,7 +23,7 @@ filtered_vars = [v for v in keep_vars if v not in to_drop]
 
 # Saving file after removing features with low variance and hugh correlation
 df = df[filtered_vars + ['label']]
-df.to_csv('corr&var_filtered_data.csv', index=False)
+df.to_csv('model/data/csv-versions/corr&var_filtered_data.csv', index=False)
 
 # Scoring features by importance using randmom forest, selecting top 20
 
