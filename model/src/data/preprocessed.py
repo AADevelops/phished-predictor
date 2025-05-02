@@ -1,20 +1,18 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, Normalizer
 
-in_path  = 'model/data/4feature_generation/generated_features.csv'
-out_path = 'model/data/5preprocessed/preprocessed.csv'
-df = pd.read_csv(in_path)
+df = pd.read_csv("model/data/4feature_generation/generated_features.csv")
 
-url = df[['URL']]
-X   = df.drop(columns=['URL'])
+url   = df.pop("URL")
+label = df.pop("label")
+features = df  # now just your numeric columns
 
-# Standardize → Scale → Normalize
-X_std    = StandardScaler().fit_transform(X)
-X_scaled = MinMaxScaler().fit_transform(X_std)
-X_norm   = Normalizer().fit_transform(X_scaled)
+X = StandardScaler().fit_transform(features)
+X = Normalizer().fit_transform(X)
+X = MinMaxScaler().fit_transform(X)
 
-df_out = pd.DataFrame(X_norm, columns=X.columns)
-df_out = pd.concat([url.reset_index(drop=True), df_out], axis=1)
-df_out.to_csv(out_path, index=False)
+df_out = pd.DataFrame(X, columns=features.columns)
+df_out["label"] = label.values
+df_out["URL"]   = url.values
 
-print(f"Preprocessed data saved to {out_path}")
+df_out.to_csv("model/data/5preprocessed/preprocessed.csv", index=False)
