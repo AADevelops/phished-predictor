@@ -20,7 +20,7 @@ drop = [c for c in upper.columns if any(upper[c] > 0.90)]
 filtered = [c for c in keep if c not in drop]
 
 # 4) Save corr&var–filtered with URL
-df1 = df[['URL'] + filtered]
+df1 = df[['URL'] + filtered + ['label']]
 df1.to_csv('model/data/2corr&var/corr&var_filtered_data.csv', index=False)
 
 # 5) rf importances
@@ -31,7 +31,7 @@ imps = pd.Series(rf.feature_importances_, index=X.columns)
 top25 = imps.nlargest(25).index.tolist()
 
 # 6) Save rf–filtered with URL
-df2 = df1[['URL'] + top25]
+df2 = df1[['URL'] + top25 + ['label']]
 df2.to_csv('model/data/3rf/rf_filtered_data.csv', index=False)
 
 print("Feature optimization finished, top 25 saved.")
