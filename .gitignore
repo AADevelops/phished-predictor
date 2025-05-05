@@ -1,1 +1,6 @@
 .env
+
+# ignore our preprocessed data so it doesn’t get pushed
+model/data/5preprocessed/
+
+git rm --cached model/data/5preprocessed/preprocessed.csv
