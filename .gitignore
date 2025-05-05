@@ -3,4 +3,4 @@
 # ignore our preprocessed data so it doesn’t get pushed
 model/data/5preprocessed/
 
-git rm --cached model/data/5preprocessed/preprocessed.csv
+git rm --cached model/data/5preprocessed/preprocessed.csvmodel/data/5preprocessed/preprocessed.csv
